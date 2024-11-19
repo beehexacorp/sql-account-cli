@@ -18,7 +18,7 @@ program
   .description('Deploy SQL Accounting to IIS')
   .requiredOption('--app-name <name>', 'Name of the IIS application')
   .requiredOption('--port <port>', 'Port number for the application')
-  .option('--use-windows-service <boolean>', 'Set to true to deploy as a Windows Service', 'false')
+  .option('--use-windows-service <boolean>', 'Set to true to deploy as a Windows Service', 'true')
   .action((options) => {
     deploy(options.appName, options.port, options.useWindowsService);
   });
