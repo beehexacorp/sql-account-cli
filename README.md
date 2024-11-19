@@ -16,6 +16,8 @@ SQL Accounting CLI is a command-line tool designed to streamline the deployment,
   - [Installation](#installation)
     - [Run Locally](#run-locally)
     - [Install from NPM](#install-from-npm)
+  - [Prerequisites](#prerequisites)
+    - [Install IIS Manually](#install-iis-manually)
   - [Usage](#usage)
     - [Commands](#commands)
       - [`install`](#install)
@@ -73,6 +75,58 @@ To use the CLI after publishing to npm:
    ```bash
    sql-accounting <command> [options]
    ```
+
+---
+
+## Prerequisites
+
+Before using the `install` command, ensure the following prerequisites are met.
+
+### Install IIS Manually
+
+1. **Open PowerShell as Administrator**:
+   - Click **Start**, search for `PowerShell`, right-click it, and select **Run as Administrator**.
+
+2. **Install IIS**:
+   - Run the following `dism` command to install IIS on client systems (Windows 10/11):
+     ```powershell
+     dism /Online /Enable-Feature /FeatureName:IIS-WebServerRole /All /NoRestart
+     ```
+
+3. **Enable Additional IIS Features for .NET Core 8.0**:
+   - Run the following `dism` commands to enable required IIS features:
+     ```powershell
+     dism /Online /Enable-Feature /FeatureName:IIS-ISAPIFilter /All /NoRestart
+     dism /Online /Enable-Feature /FeatureName:IIS-ISAPIExtensions /All /NoRestart
+     dism /Online /Enable-Feature /FeatureName:IIS-ASPNET45 /All /NoRestart
+     dism /Online /Enable-Feature /FeatureName:IIS-WindowsAuthentication /All /NoRestart
+     dism /Online /Enable-Feature /FeatureName:IIS-WebSockets /All /NoRestart
+     dism /Online /Enable-Feature /FeatureName:IIS-DefaultDocument /All /NoRestart
+     
+     ```
+
+4. **Install IIS Management Tools**:
+   - If IIS management tools are required, install them using:
+     ```powershell
+     dism /Online /Enable-Feature /FeatureName:IIS-ManagementService /All /NoRestart
+     dism /Online /Enable-Feature /FeatureName:IIS-ManagementConsole /All /NoRestart
+     dism /Online /Enable-Feature /FeatureName:IIS-ManagementScriptingTools /All /NoRestart
+     ```
+
+5. **Restart Your System**:
+   - Some features require a system restart to complete the installation:
+     ```powershell
+     shutdown -r -t 0
+     ```
+
+6. **Verify IIS Installation**:
+   - After restarting, check if IIS is installed by opening a web browser and navigating to:
+     ```
+     http://localhost
+     ```
+   - You should see the default IIS welcome page.
+  
+![alt text](/assets/images/install-iis.png)
 
 ---
 
