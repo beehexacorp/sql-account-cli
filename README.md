@@ -56,17 +56,11 @@ Before using this project, ensure the following are installed on your system:
 
 ### Installation Steps
 
-1. Clone or download the project.
-2. Navigate to the project directory using a terminal.
-3. Install the required dependencies:
-   ```bash
-   npm install
-   ```
-4. For local development:
-   ```bash
-   npm run build
-   npm link
-   ```
+For usage, install the CLI globally using npm:
+
+```bash
+npm install -g sql-account
+```
 
 ### PowerShell Note
 
@@ -111,6 +105,20 @@ Below are the key commands available in the `sql-account` CLI:
 ---
 
 ## Development & Contribution
+
+For local development:
+
+1. Clone or download the project.
+2. Navigate to the project directory using a terminal.
+3. Install the required dependencies:
+   ```bash
+   npm install
+   ```
+4. Build and link the package for local usage:
+   ```bash
+   npm run build
+   npm link
+   ```
 
 This project is implemented and maintained by the **HexaSync Team**.
 
