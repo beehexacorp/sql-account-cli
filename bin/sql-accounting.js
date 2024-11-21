@@ -19,6 +19,7 @@ program
   .requiredOption('--app-name <name>', 'Name of the IIS application')
   .requiredOption('--port <port>', 'Port number for the application')
   .option('--use-windows-service <boolean>', 'Set to true to deploy as a Windows Service', 'true')
+  .option('--version <version>', 'Version of the IIS application', 'latest')
   .option('--username <username>', 'Username for Windows service', null)
   .option('--password <password>', 'Password for Windows service', null)
   .action((options) => {
