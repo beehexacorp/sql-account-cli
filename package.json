@@ -1,16 +1,16 @@
 {
-    "name": "sql-accounting",
+    "name": "sql-account",
     "version": "1.0.0",
-    "description": "A CLI tool for deploying and managing SQL Accounting application on Windows IIS.",
-    "main": "bin/sql-accounting.js",
+    "description": "A CLI tool for deploying and managing SQL Account application on Windows IIS or Windows Service.",
+    "main": "bin/sql-account.js",
     "bin": {
-        "sql-accounting": "./bin/sql-accounting.js"
+        "sql-account": "./bin/sql-account.js"
     },
     "scripts": {
-        "start": "node bin/sql-accounting.js",
+        "start": "node bin/sql-account.js",
         "test": "echo \"No test specified\"",
         "prepare": "npm run build",
-        "build": "node bin/sql-accounting.js"
+        "build": "node bin/sql-account.js"
     },
     "dependencies": {
         "axios": "^1.7.7",
