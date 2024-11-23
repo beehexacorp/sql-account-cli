@@ -1,4 +1,4 @@
 {
-  "PORT": "5001",
-  "APP_NAME": "SQLAccounting"
+  "PORT": 5001,
+  "APP_NAME": "SQLAccountRestAPI"
 }
