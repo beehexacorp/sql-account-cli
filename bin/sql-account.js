@@ -16,11 +16,15 @@ program
 program
   .command('install')
   .description('Deploy SQL Account to IIS')
-  .requiredOption('--app-name <name>', 'Name of the IIS application')
-  .requiredOption('--port <port>', 'Port number for the application')
+  .requiredOption('--app-dir <appDir>', 'Path to the IIS application directory')
+  .requiredOption('--app-name <appName>', 'Name of the IIS application')
+  .option('--port <port>', 'Port number for the application', null)
   .option('--use-windows-service <boolean>', 'Set to true to deploy as a Windows Service', 'true')
+  .option('--version <version>', 'Version of the IIS application', null)
+  .option('--username <username>', 'Username for Windows service', null)
+  .option('--password <password>', 'Password for Windows service', null)
   .action((options) => {
-    deploy(options.appName, options.port, options.useWindowsService);
+    deploy(options.appDir, options.appName, options.port, options.useWindowsService, options.version,options.username, options.password);
   });
 
 program
