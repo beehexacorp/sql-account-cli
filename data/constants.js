@@ -4,6 +4,7 @@ const { log } = require("../lib/logger");
 
 const CONFIGURATION_FILE_PATH = path.resolve(__dirname,"configuration.json");
 const GITHUB_RELEASE_URL = "beehexacorp/sql-account-rest-api/releases/";
+const CLOUDFLARED_WIN_64_URL = "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-windows-amd64.msi";
 
 async function ReadJsonFile(filePath) {
   try {
@@ -42,6 +43,7 @@ async function WriteJsonFile(filePath, newData) {
 module.exports = {
   CONFIGURATION_FILE_PATH,
   GITHUB_RELEASE_URL,
+  CLOUDFLARED_WIN_64_URL,
   ReadJsonFile,
   WriteJsonFile,
 };
