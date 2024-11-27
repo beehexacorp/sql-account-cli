@@ -1,56 +1,47 @@
-const fs = require("fs");
+const fs = require("fs").promises;
+const path = require("path");
+const { log } = require("../lib/logger");
 
-export const CONFIGURATION_FILE_PATH = "data/configuration.json";
-export const GITHUB_RELEASE_URL = "beehexacorp/sql-account-rest-api/releases/";
+const CONFIGURATION_FILE_PATH = path.resolve(__dirname,"configuration.json");
+const GITHUB_RELEASE_URL = "beehexacorp/sql-account-rest-api/releases/";
 
-export function ReadJsonFile(filePath) {
-  return new Promise((resolve, reject) => {
-    if (!fs.existsSync(filePath)) {
+async function ReadJsonFile(filePath) {
+  try {
+    if (!(await fs.stat(filePath).catch(() => false))){
       // Create empty file if not exists
-      fs.writeFile(filePath, JSON.stringify({}, null, 2), "utf8", (writeErr) => {
-        if (writeErr) {
-          reject("Error creating file:", writeErr);
-          return;
-        }
-        resolve({}); 
-      });
-      return;
+      await fs.writeFile(filePath, JSON.stringify({}, null, 2), "utf8");
+      return {};
     }
-    fs.readFile(filePath, "utf8", (err, data) => {
-      if (err) {
-        reject("Error when reading file:", err);
-        return;
-      }
-      try {
-        const jsonData = JSON.parse(data);
-        resolve(jsonData);
-      } catch (parseErr) {
-        resolve({});
-        reject("Error parsing JSON:", parseErr);
-      }
-    });
-  });
+    // Read file
+    const data = await fs.readFile(filePath, "utf8");
+    // Parse JSON data
+    try {
+      return JSON.parse(data);
+    } catch (err) {
+      log("Error when parsing JSON file:"+ err);
+    }
+  } catch (err) {
+    log("Error when reading file:"+ err);
+  }
+  return {};
 }
-export function WriteJsonFile(filePath, newData) {
-  return new Promise((resolve, reject) => {
-    ReadJsonFile(filePath)
-      .catch((err) => {
-        log("Warning: ReadJsonFile failed. Proceeding with empty object.", err);
-        return {}; 
-      })
-      .then((jsonData) => {
-        jsonData = { ...jsonData, ...newData };
-        const jsonString = JSON.stringify(jsonData, null, 2);
-        fs.writeFile(filePath, jsonString, (err) => {
-          if (err) {
-            reject("Error writing file:", err);
-            return;
-          }
-          resolve("File written successfully.");
-        });
-      })
-      .catch((err) => {
-        reject("Error reading JSON file:", err);
-      });
-  });
+
+async function WriteJsonFile(filePath, newData) {
+  try {
+    let jsonData = await ReadJsonFile(filePath)
+    jsonData = { ...jsonData, ...newData }
+    const jsonString = JSON.stringify(jsonData, null, 2);
+    await fs.writeFile(filePath, jsonString, "utf8");
+    log("Updated JSON file successfully.");
+  } catch (err) {
+    log("Error writing file:", err);
+  }
+    
 }
+
+module.exports = {
+  CONFIGURATION_FILE_PATH,
+  GITHUB_RELEASE_URL,
+  ReadJsonFile,
+  WriteJsonFile,
+};
