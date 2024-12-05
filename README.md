@@ -83,10 +83,10 @@ Below are the key commands available in the `sql-account` CLI:
 2. **Expose**  
    Create a secure Cloudflare tunnel for exposing the application:
    ```bash
-   sql-account expose --host <hostname> --key <cloudflare-key>
+   sql-account expose --provider <hostname> --secret <cloudflare-key>
    ```
-   - `--host`: Hostname to use for the Cloudflare tunnel.
-   - `--key`: API key for authenticating with Cloudflare.
+   - `--provider`: Hostname to use for the Cloudflare tunnel.
+   - `--secret`: API key for authenticating with Cloudflare.
 
 3. **Login**  
    Authenticate with SQL Account:
