@@ -104,6 +104,39 @@ Below are the key commands available in the `sql-account` CLI:
 
 ---
 
+## Troubleshooting
+
+If you encounter issues while using SQL Account CLI, below is a list of common errors and solutions:
+
+1. **System script blocking**
+
+**Description**: When running the command `npm install -g sql-account`, an error occurs related to script execution policy.
+
+**Cause**: The current ExecutionPolicy does not allow running untrusted scripts.
+
+**Solution**: 
+
+Check the current policy
+```bash
+Get-ExecutionPolicy
+```
+Update the policy
+```bash
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
+Retry the installation command.
+
+2. **Command 'cloudflared' not found**
+
+**Description**: When running the command to connect to a Cloudflare Tunnel, the CLI reports that the cloudflared command cannot be found.
+
+**Cause**: Cloudflare Tunnel is not installed or is not in the system's PATH.
+
+**Solution**:
+
+Download Cloudflare Tunnel from [here](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/).
+
+Ensure the cloudflared executable is accessible by adding its directory to the PATH environment variable.
 ## Development & Contribution
 
 For local development:
