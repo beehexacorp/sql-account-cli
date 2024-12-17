@@ -58,19 +58,6 @@ program
     login(options.username, options.password);
   });
 
-program
-  .command("monitor")
-  .description("Deploy SQL Account to IIS")
-  .requiredOption("--app-dir <appDir>", "Path to the application directory")
-  .requiredOption("--app-name <appName>", "Name of the IIS application or service")
-  .option("--port <port>", "Port number for the application", null)
-  .action((options) => {
-    monitor(
-      options.appDir,
-      options.appName,
-      options.port,
-    );
-  });
 
 // Check for empty arguments and display help if needed
 if (process.argv.length <= 2) {
