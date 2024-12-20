@@ -3,9 +3,11 @@ const path = require("path");
 const { log } = require("../lib/logger");
 
 const CONFIGURATION_FILE_PATH = path.resolve(__dirname,"configuration.json");
-const GITHUB_RELEASE_URL = "beehexacorp/sql-account-rest-api/releases/";
+const GITHUB_SQL_ACCOUNT_REST_API_RELEASE_URL = "beehexacorp/sql-account-rest-api/releases/";
+const GITHUB_SQL_ACCOUNT_REST_API_MONITOR_RELEASE_URL = "hexasync-saas/sql-account-monitor/releases/";
 const CLOUDFLARED_WIN_64_URL = "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-windows-amd64.msi";
-
+const SQL_ACCOUNT_REST_API_APPLICATION_NAME = "SqlAccountRestAPI.exe";
+const SQL_ACCOUNT_REST_API_MONITOR_APPLICATION_NAME = "SqlAccountRestAPIMonitor.exe";
 async function ReadJsonFile(filePath) {
   try {
     if (!(await fs.stat(filePath).catch(() => false))){
@@ -42,8 +44,11 @@ async function WriteJsonFile(filePath, newData) {
 
 module.exports = {
   CONFIGURATION_FILE_PATH,
-  GITHUB_RELEASE_URL,
+  GITHUB_SQL_ACCOUNT_REST_API_RELEASE_URL,
+  GITHUB_SQL_ACCOUNT_REST_API_MONITOR_RELEASE_URL,
   CLOUDFLARED_WIN_64_URL,
+  SQL_ACCOUNT_REST_API_APPLICATION_NAME,
+  SQL_ACCOUNT_REST_API_MONITOR_APPLICATION_NAME,
   ReadJsonFile,
   WriteJsonFile,
 };
