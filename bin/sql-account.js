@@ -5,7 +5,6 @@ const { Command } = require("commander");
 const { deploy } = require("../lib/deploy");
 const { expose } = require("../lib/expose");
 const { login } = require("../lib/login");
-const { monitor } = require("../lib/monitor");
 
 const program = new Command();
 
