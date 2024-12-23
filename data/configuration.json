@@ -1,5 +1,6 @@
 {
+  "APP_DIR": "C:\\Users\\Admin\\Code\\SQLAccountPackage",
+  "API_VERSION": "release-0.0.25",
   "PORT": 5001,
-  "APP_NAME": "SQLAccountDevSunday",
-  "API_VERSION": "release-0.0.24"
+  "APP_NAME": "SQLAccountTest2"
 }
