@@ -25,7 +25,7 @@ async function readJsonFile(filePath) {
 
 async function writeJsonFile(filePath, newData) {
   try {
-    let jsonData = await ReadJsonFile(filePath);
+    let jsonData = await readJsonFile(filePath);
     jsonData = { ...jsonData, ...newData };
     const jsonString = JSON.stringify(jsonData, null, 2);
     await fs.writeFile(filePath, jsonString, "utf8");
