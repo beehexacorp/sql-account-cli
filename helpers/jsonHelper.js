@@ -2,7 +2,7 @@ const fs = require("fs").promises;
 const path = require("path");
 const { log } = require("../lib/logger");
 
-async function ReadJsonFile(filePath) {
+async function readJsonFile(filePath) {
   try {
     if (!(await fs.stat(filePath).catch(() => false))) {
       // Create empty file if not exists
@@ -23,7 +23,7 @@ async function ReadJsonFile(filePath) {
   return {};
 }
 
-async function WriteJsonFile(filePath, newData) {
+async function writeJsonFile(filePath, newData) {
   try {
     let jsonData = await ReadJsonFile(filePath);
     jsonData = { ...jsonData, ...newData };
@@ -36,6 +36,6 @@ async function WriteJsonFile(filePath, newData) {
 }
 
 module.exports = {
-  ReadJsonFile,
-  WriteJsonFile,
+  readJsonFile,
+  writeJsonFile,
 };

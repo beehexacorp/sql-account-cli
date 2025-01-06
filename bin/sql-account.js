@@ -20,7 +20,7 @@ program
   .requiredOption("--app-name <appName>", "Name of the IIS application or service")
   .option("--port <port>", "Port number for the application", null)
   .option(
-    "--deploy-method <method>",
+    "--deployment-method <deploymentMethod>",
     "Specify the deployment method: 'WindowsService' to deploy as a Windows Service, 'WindowsStartup' to add to Windows Startup, or 'IIS' to deploy to IIS",
     "WindowsStartup"
   )
@@ -32,7 +32,7 @@ program
       options.appDir,
       options.appName,
       options.port,
-      options.deployMethod,
+      options.deploymentMethod,
       options.version,
       options.username,
       options.password
