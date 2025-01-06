@@ -5,7 +5,6 @@ const { Command } = require("commander");
 const { deploy } = require("../lib/deploy");
 const { expose } = require("../lib/expose");
 const { login } = require("../lib/login");
-const { monitor } = require("../lib/monitor");
 
 const program = new Command();
 
@@ -21,9 +20,9 @@ program
   .requiredOption("--app-name <appName>", "Name of the IIS application or service")
   .option("--port <port>", "Port number for the application", null)
   .option(
-    "--use-windows-service <boolean>",
-    "Set to true to deploy as a Windows Service",
-    "true"
+    "--deployment-method <deploymentMethod>",
+    "Specify the deployment method: 'WindowsService' to deploy as a Windows Service, 'WindowsStartup' to add to Windows Startup, or 'IIS' to deploy to IIS",
+    "WindowsStartup"
   )
   .option("--version <version>", "Version of the IIS application", null)
   .option("--username <username>", "Username for Windows service", null)
@@ -33,7 +32,7 @@ program
       options.appDir,
       options.appName,
       options.port,
-      options.useWindowsService,
+      options.deploymentMethod,
       options.version,
       options.username,
       options.password
